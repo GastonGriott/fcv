@@ -13,6 +13,7 @@ type: software
 authors:
   - family-names: "Griott Vidal"
     given-names: "Gastón"
+    orcid: "https://orcid.org/0009-0009-0187-6964"
     email: "gaston.griott@postgrado.uv.cl"
     affiliation: "Escuela de Ingeniería Informática, Universidad de Valparaíso, Chile"
 license: MIT
