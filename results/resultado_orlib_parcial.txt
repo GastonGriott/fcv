@@ -1,0 +1,19 @@
+metodos en el CSV: ['floor', 'ils', 'mpoa']
+piso: ils   candidatos: ['mpoa']
+
+conjunto completo: 8 instancias, todas con piso propio corrido el mismo dia
+familias: ['scp_orlib']
+
+C2 — floor-triviales (el piso resuelve en <5% del presupuesto): 0/8
+     quedan 8 instancias con evidencia, de familias: ['scp_orlib']
+
+C1 — mpoa contra el piso fuerte, en 8 instancias
+     SRate medio: 0.000  |  piso: 0.000
+     gana en fiabilidad: 0/8   gana en velocidad: 0/8
+     ==> NO PASA (C1 exige ambas)
+
+C3 — distancia al techo exacto
+     piso: mediana 2.62%  peor 5.25%
+     mpoa : mediana 984.56%  peor 1158.37%   queda mas lejos que el piso en 8/8
+
+Referencia sobre las 8 instancias corridas: mpoa nunca alcanzo el techo en 8 de ellas.

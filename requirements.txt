@@ -1,0 +1,5 @@
+scipy>=1.15
+numpy>=2.0
+matplotlib>=3.8
+tqdm>=4.6
+rich>=13.0

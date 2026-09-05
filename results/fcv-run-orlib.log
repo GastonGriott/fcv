@@ -1,0 +1,6 @@
+=== FCV run 20260902-2019 (floor,ils,poa,mpoa) — inicio 2026-09-03T00:20:02+00:00 ===
+bucket=fcv-poa-griott jobs=32 metodos=floor,ils,poa,mpoa specs=orlib nproc=32
+dpkg-preconfigure: unable to re-open stdin: No such file or directory
+python 3.11.2 (main, May 12 2026, 05:17:27) [GCC 12.2.0]
+--- lanzando run_v2 (metodos: floor,ils,poa,mpoa) ---
+FCV v2: 32 celdas x 31 seeds, 32 workers (cpu=32)

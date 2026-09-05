@@ -1,0 +1,22 @@
+=== FCV run scp-20260903-1447 (floor,ils,ga,mga) — inicio 2026-09-03T18:49:49+00:00 ===
+bucket=fcv-poa-griott jobs=32 metodos=floor,ils,ga,mga specs=orlib_scp nproc=32
+dpkg-preconfigure: unable to re-open stdin: No such file or directory
+python 3.11.2 (main, May 12 2026, 05:17:27) [GCC 12.2.0]
+--- pre-vuelo: techos del conjunto 'orlib_scp' ---
+  15 instancias, todas con techo exacto en el cache
+--- lanzando run_v2 (metodos: floor,ils,ga,mga) ---
+FCV v2: 60 celdas x 31 seeds, 32 workers (cpu=32)
+  25/60
+  50/60
+  60/60
+
+per-seed -> /opt/fcv/fcv_v2_floor_ils_ga_mga_orlib_scp_perseed.csv
+agg      -> /opt/fcv/fcv_v2_floor_ils_ga_mga_orlib_scp_agg.csv
+
+real	1601m14.901s
+user	36619m13.551s
+sys	0m14.132s
+--- run_v2 termino ---
+-rw-r--r-- 1 root root   4714 Sep  4 21:31 /opt/fcv/fcv_v2_floor_ils_ga_mga_orlib_scp_agg.csv
+-rw-r--r-- 1 root root 141982 Sep  4 21:31 /opt/fcv/fcv_v2_floor_ils_ga_mga_orlib_scp_perseed.csv
+=== fin rc=0 2026-09-04T21:31:10+00:00 ===

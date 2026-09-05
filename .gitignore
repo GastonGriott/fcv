@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Caches de techos: se resuelven con MILP/HiGHS en segundos y el cargador ABORTA
+# si no coinciden con el optimo publicado, asi que versionarlos no agrega garantia.
+fcv/data_orlib/cache/
+_cache_*/
+_tmp_*.csv
+
+# Los logs de corrida SI se versionan: son el oraculo de que una campana termino
+# ("fin rc=0" + tiempo real). Los tapa el *.log del .gitignore GLOBAL del usuario.
+!results/*.log

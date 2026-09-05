@@ -1,0 +1,28 @@
+=== FCV run 20260902-1642 (floor,ils) — inicio 2026-09-02T20:42:58+00:00 ===
+bucket=fcv-poa-griott jobs=32 metodos=floor,ils nproc=32
+dpkg-preconfigure: unable to re-open stdin: No such file or directory
+python 3.11.2 (main, May 12 2026, 05:17:27) [GCC 12.2.0]
+--- lanzando run_v2 (metodos: floor,ils) ---
+FCV v2: 270 celdas x 31 seeds, 32 workers (cpu=32)
+  25/270
+  50/270
+  75/270
+  100/270
+  125/270
+  150/270
+  175/270
+  200/270
+  225/270
+  250/270
+  270/270
+
+per-seed -> /opt/fcv/fcv_v2_floor_ils_perseed.csv
+agg      -> /opt/fcv/fcv_v2_floor_ils_agg.csv
+
+real	36m0.571s
+user	1064m39.963s
+sys	0m1.098s
+--- run_v2 termino ---
+-rw-r--r-- 1 root root  21168 Sep  2 21:19 /opt/fcv/fcv_v2_floor_ils_agg.csv
+-rw-r--r-- 1 root root 609534 Sep  2 21:19 /opt/fcv/fcv_v2_floor_ils_perseed.csv
+=== fin rc=0 2026-09-02T21:19:05+00:00 ===

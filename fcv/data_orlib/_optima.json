@@ -1,0 +1,191 @@
+{
+ "cap101": {
+  "family": "uflp_orlib",
+  "m": 25,
+  "n": 50,
+  "opt": 796648.4375,
+  "via": "milp-highs"
+ },
+ "cap102": {
+  "family": "uflp_orlib",
+  "m": 25,
+  "n": 50,
+  "opt": 854704.2,
+  "via": "milp-highs"
+ },
+ "cap103": {
+  "family": "uflp_orlib",
+  "m": 25,
+  "n": 50,
+  "opt": 893782.1125,
+  "via": "milp-highs"
+ },
+ "cap104": {
+  "family": "uflp_orlib",
+  "m": 25,
+  "n": 50,
+  "opt": 928941.75,
+  "via": "milp-highs"
+ },
+ "cap131": {
+  "family": "uflp_orlib",
+  "m": 50,
+  "n": 50,
+  "opt": 793439.5625,
+  "via": "milp-highs"
+ },
+ "cap132": {
+  "family": "uflp_orlib",
+  "m": 50,
+  "n": 50,
+  "opt": 851495.325,
+  "via": "milp-highs"
+ },
+ "cap133": {
+  "family": "uflp_orlib",
+  "m": 50,
+  "n": 50,
+  "opt": 893076.7125,
+  "via": "milp-highs"
+ },
+ "cap134": {
+  "family": "uflp_orlib",
+  "m": 50,
+  "n": 50,
+  "opt": 928941.75,
+  "via": "milp-highs"
+ },
+ "cap71": {
+  "family": "uflp_orlib",
+  "m": 16,
+  "n": 50,
+  "opt": 932615.75,
+  "via": "enumeration"
+ },
+ "cap72": {
+  "family": "uflp_orlib",
+  "m": 16,
+  "n": 50,
+  "opt": 977799.4,
+  "via": "enumeration"
+ },
+ "cap73": {
+  "family": "uflp_orlib",
+  "m": 16,
+  "n": 50,
+  "opt": 1010641.45,
+  "via": "enumeration"
+ },
+ "cap74": {
+  "family": "uflp_orlib",
+  "m": 16,
+  "n": 50,
+  "opt": 1034976.975,
+  "via": "enumeration"
+ },
+ "scp41": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 429,
+  "via": "milp-highs"
+ },
+ "scp410": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 514,
+  "via": "milp-highs"
+ },
+ "scp42": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 512,
+  "via": "milp-highs"
+ },
+ "scp43": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 516,
+  "via": "milp-highs"
+ },
+ "scp44": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 494,
+  "via": "milp-highs"
+ },
+ "scp45": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 512,
+  "via": "milp-highs"
+ },
+ "scp46": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 560,
+  "via": "milp-highs"
+ },
+ "scp47": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 430,
+  "via": "milp-highs"
+ },
+ "scp48": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 492,
+  "via": "milp-highs"
+ },
+ "scp49": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 641,
+  "via": "milp-highs"
+ },
+ "scp61": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 138,
+  "via": "milp-highs"
+ },
+ "scp62": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 146,
+  "via": "milp-highs"
+ },
+ "scp63": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 145,
+  "via": "milp-highs"
+ },
+ "scp64": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 131,
+  "via": "milp-highs"
+ },
+ "scp65": {
+  "family": "scp_orlib",
+  "m": 200,
+  "n": 1000,
+  "opt": 161,
+  "via": "milp-highs"
+ }
+}

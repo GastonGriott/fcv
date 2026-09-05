@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the paper it accompanies."
+title: "FCV — Floor–Ceiling Validation"
+abstract: >-
+  Reference implementation of Floor–Ceiling Validation, an admission test for
+  metaheuristics. A method is admitted on a problem only if it beats a parameter-free
+  local-search floor in reliability, on instances that are not floor-trivial, with
+  quality measured against an exact ceiling. Includes the three problem families
+  (knapsack, set covering, uncapacitated facility location) with both planted and
+  OR-Library instances, six candidate metaheuristics in vanilla and memetic variants,
+  exact ceiling solvers, and the complete per-seed experimental record.
+type: software
+authors:
+  - family-names: "Griott Vidal"
+    given-names: "Gastón"
+    email: "gaston.griott@postgrado.uv.cl"
+    affiliation: "Escuela de Ingeniería Informática, Universidad de Valparaíso, Chile"
+license: MIT
+repository-code: "https://github.com/GastonGriott/fcv"
+version: "1.0.0"
+date-released: "2026-09-05"
+keywords:
+  - metaheuristics
+  - benchmarking
+  - local search
+  - problem difficulty
+  - baselines
+  - reproducibility
+# TODO antes de publicar el release: reemplazar por el DOI real que acune Zenodo.
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.XXXXXXX"
+#     description: "Archived snapshot of the release"
