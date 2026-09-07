@@ -27,8 +27,11 @@ keywords:
   - problem difficulty
   - baselines
   - reproducibility
-# TODO antes de publicar el release: reemplazar por el DOI real que acune Zenodo.
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.XXXXXXX"
-#     description: "Archived snapshot of the release"
+doi: "10.5281/zenodo.22651284"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22651284"
+    description: "Concept DOI — always resolves to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22651285"
+    description: "DOI of release v1.0.0"
