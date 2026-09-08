@@ -52,7 +52,16 @@ say "3. Crear la VM (recorre zonas/tipos hasta encontrar capacidad)"
 # ellas, porque exceder la cuota no es stockout y el script aborta con razon ante
 # cualquier otro error. Si algun dia se amplia la cuota, agregar tipos mas grandes
 # ADELANTE de estos.
-CANDIDATOS="${CANDIDATOS:-c2d-highcpu-32:us-central1-a c2d-highcpu-32:us-central1-b c2d-highcpu-32:us-central1-c n2d-highcpu-32:us-central1-a n2d-highcpu-32:us-central1-b e2-highcpu-32:us-central1-a e2-highcpu-32:us-central1-b e2-highcpu-32:us-central1-c}"
+#
+# 🔴 Y la cuota NO es una sola: ademas del techo global CPUS_ALL_REGIONS hay una
+# cuota POR FAMILIA, y son mucho mas bajas. Medido en us-central1 el 2026-09-07:
+#   C2D_CPUS=100 ✅   N2_CPUS=200 ✅   E2_CPUS=24 ❌   N2D_CPUS=16 ❌   C3/T2D=24 ❌
+# Esta lista tenia n2d-highcpu-32 y e2-highcpu-32, que esas cuotas NO permiten crear
+# jamas, y no tenia n2, que es el que si. Como el script aborta ante error de cuota
+# (correcto), el recorrido moria en el n2d sin llegar a probar nada usable.
+# Antes de agregar un tipo aca, verificar su cuota:
+#   gcloud compute regions describe <region> --project=<proj> --format=json | grep -A2 <FAMILIA>_CPUS
+CANDIDATOS="${CANDIDATOS:-c2d-highcpu-32:us-central1-a c2d-highcpu-32:us-central1-b c2d-highcpu-32:us-central1-c n2-highcpu-32:us-central1-a n2-highcpu-32:us-central1-b n2-highcpu-32:us-central1-c}"
 
 CREADA=""
 for cand in $CANDIDATOS; do
