@@ -16,9 +16,17 @@ target (empty when the target was never reached) and `fes` the evaluations spent
 | `fcv_v2_decoder_perseed.csv` | 8 370 | **Decoder control.** Same problems and seeds, penalty vs. repair decoder | §6 |
 | `fcv_v2_floor_ils_ga_mga_orlib_scp_perseed.csv` | 1 860 | **Set covering, OR-Library.** 15 instances (classes `scp4` and `scp6`) × 4 methods × 31 seeds | §5, Table 3 |
 | `fcv_v2_floor_ils_ga_mga_bpso_mbpso_bde_mbde_orlib_uflp_perseed.csv` | 2 976 | **Facility location, OR-Library.** 12 `cap*` files × 8 methods × 31 seeds | §5 |
-| `fcv_v2_floor_ils_perseed.csv` | 8 370 | Both floors over the 135 generated instances | §5, floor-triviality counts |
+| `fcv_v2_floor_ils_perseed.csv` | 8 370 | Both floors over **135** generated instances (5 per cell) | Independent replication — see below |
 | `fcv_v2_poa_perseed.csv` | 8 370 | An in-protocol run of a published 2024 metaheuristic and its memetic variant, over the same 135 | Referenced as an application of the protocol |
 | `fcv_v2_floor_ils_mpoa_orlib_perseed.csv` | 744 | ⚠️ **Superseded for set covering — see below** | — |
+
+⚠️ **Do not read the paper's floor-triviality counts off `fcv_v2_floor_ils_perseed.csv`.** It holds
+**five** instances per cell where the factorial study holds **three**, so it reproduces the shape of
+Table 3 with different denominators (`5/5, 0/5, 0/5, 0/5` against the paper's `3/3, 0/3, 0/3, 0/3`).
+Every count in the paper comes from `fcv_v2_perseed.csv`. The 2 511 cells the two files share are
+**identical seed by seed**, which is exactly what this file is for: it is the independent
+replication, run on a different day on a different machine, behind the reproducibility claim.
+`analysis/check_reproducibilidad.py` is the script that checks it.
 
 ## ⚠️ Superseded data, and why it is still here
 

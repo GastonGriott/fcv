@@ -223,7 +223,7 @@ def main():
         # en esa instancia, el exito no es observable y la barra pasa a ser endogena.
         bars, regimenes = {}, {}
         for k in no_triv:
-            reg = core.instance_regime({args.floor: FLOOR[k], nombre: M[k]})
+            reg = core.instance_regime(FLOOR[k])
             regimenes[k] = reg
             bars[k] = core.endogenous_bar(FLOOR[k]) if reg == 'budget-bound' else None
         n_bound = sum(1 for k in no_triv if regimenes[k] == 'budget-bound')

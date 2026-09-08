@@ -163,20 +163,30 @@ def _require_wilcoxon():
         ) from e
 
 
-def instance_regime(runs_by_method):
+def instance_regime(floor_runs):
     """Regimen de medicion de UNA instancia. Lo fijan los datos, no el autor.
 
-    'target-reachable': algun metodo alcanza el techo en al menos una semilla, asi
-    que el evento de exito es observable y C1 se mide contra el techo.
-    'budget-bound': nadie lo alcanza nunca. El exito al techo NO es observable, y
+    'target-reachable': el PISO alcanza el techo en al menos una semilla, asi que el
+    evento de exito es observable y C1 se mide contra el techo.
+    'budget-bound': el piso no lo alcanza nunca. El exito al techo NO es observable, y
     medir C1 ahi da SRate 0 para todos: McNemar empata en cero y devuelve p=1 para
     cualquier par de metodos, por buenos o malos que sean. Un 'no pasa' obtenido
     asi no es evidencia contra el candidato, es ausencia de evidencia.
 
-    runs_by_method: dict metodo -> lista de corridas de esa instancia."""
-    for runs in runs_by_method.values():
-        if any(r["fes_to_target"] is not None for r in runs):
-            return "target-reachable"
+    🔴 El regimen lo fija SOLO EL PISO, y por eso esta funcion recibe sus corridas y
+    no un dict de metodos. Mirar tambien al candidato vuelve la regla de admision NO
+    MONOTONA: bastaba que el candidato acertara el techo en UNA semilla para que la
+    celda saltara a target-reachable, la barra subiera al techo y el candidato pasara
+    de admitido a rechazado. O sea: MEJORAR un candidato podia quitarle la admision.
+    Verificado con contraejemplo — candidato A (nunca alcanza el techo, 31 semillas
+    bajo la mediana del piso) daba SRate 1,000 vs 0,516 y p=6,1e-05 -> ADMITIDO;
+    candidato B = A mas una semilla exitosa daba SRate 0,032 vs 0,000 y p=1,0 -> NO
+    admitido. En los datos reales cayeron ahi 31 celdas. Con la firma de arriba el
+    defecto es imposible de reintroducir: el candidato no entra a la funcion.
+
+    floor_runs: lista de corridas del piso sobre esa instancia."""
+    if any(r["fes_to_target"] is not None for r in floor_runs):
+        return "target-reachable"
     return "budget-bound"
 
 
