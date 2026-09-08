@@ -15,9 +15,11 @@ JOBS="${JOBS:-56}"
 BUCKET="${BUCKET:?define BUCKET=<tu-bucket-gcs>}"
 RUN_ID="${RUN_ID:-$(date +%Y%m%d-%H%M)}"
 METHODS="${METHODS:-poa,mpoa}"
+DECODERS="${DECODERS:-penalty}"
 SPECS="${SPECS:-default}"
 # gcloud usa la coma para separar pares en --metadata, asi que va con +
 METHODS_META="$(echo "$METHODS" | tr ',' '+')"
+DECODERS_META="$(echo "$DECODERS" | tr ',' '+')"
 VM="fcv-poa-${RUN_ID}"
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GC="${GCLOUD:-gcloud}"
@@ -60,7 +62,7 @@ for cand in $CANDIDATOS; do
   echo "  probando ${MT} en ${ZN} (${NJOBS} jobs, metodos ${METHODS})..."
   if [[ $DRY == 1 ]]; then echo "  [dry] crearia ${VMN}"; CREADA="$VMN"; ZONE="$ZN"; MACHINE="$MT"; JOBS="$NJOBS"; break; fi
   ERR="$(mktemp)"
-  if "$GC" compute instances create "${VMN}"       --project="${PROJECT}" --zone="${ZN}" --machine-type="${MT}"       --image-family=debian-12 --image-project=debian-cloud       --boot-disk-size=50GB --boot-disk-type=pd-balanced       --scopes=storage-rw       --metadata-from-file=startup-script="${REPO}/vm/startup.sh"       --metadata=bucket="${BUCKET}",jobs="${NJOBS}",run-id="${RUN_ID}",methods="${METHODS_META}",specs="${SPECS}"       --labels=proyecto=fcv,corrida=poa-in-protocol >"$ERR" 2>&1; then
+  if "$GC" compute instances create "${VMN}"       --project="${PROJECT}" --zone="${ZN}" --machine-type="${MT}"       --image-family=debian-12 --image-project=debian-cloud       --boot-disk-size=50GB --boot-disk-type=pd-balanced       --scopes=storage-rw       --metadata-from-file=startup-script="${REPO}/vm/startup.sh"       --metadata=bucket="${BUCKET}",jobs="${NJOBS}",run-id="${RUN_ID}",methods="${METHODS_META}",decoders="${DECODERS_META}",specs="${SPECS}"       --labels=proyecto=fcv,corrida=poa-in-protocol >"$ERR" 2>&1; then
     CREADA="$VMN"; ZONE="$ZN"; MACHINE="$MT"; JOBS="$NJOBS"
     echo "  -> creada ${VMN} (${MT}, ${ZN})"
     break

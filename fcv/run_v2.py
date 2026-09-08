@@ -126,6 +126,20 @@ def orlib_scp_full_specs():
     return orlib_specs(ORLIB_SCP_FULL)
 
 
+# Sonda del control de decoder sobre SCP real. Tres instancias elegidas para que la
+# muestra no sea de una sola clase: scp41 (clase scp4, densidad 2%, la instancia
+# canonica del banco), scp49 (misma clase, el optimo mas alto del grupo: 641) y
+# scp63 (clase scp6, densidad 5%, y una de las dos donde el piso ILS alcanza el
+# optimo alguna vez). Existe porque §5 se midio SOLO con `penalty` — no por
+# decision, sino porque vm/startup.sh nunca expuso el parametro `decoders` — y §6
+# del propio paper demuestra que el decoder decide el veredicto.
+ORLIB_SCP_PROBE = ["scp41", "scp49", "scp63"]
+
+
+def orlib_scp_probe_specs():
+    return orlib_specs(ORLIB_SCP_PROBE)
+
+
 def orlib_uflp_specs(names=None):
     """UFLP REAL de OR-Library. Cierra la otra mitad de la critica: la familia que
     el estudio declaraba floor-trivial se evaluaba solo sobre instancias propias de
@@ -144,7 +158,8 @@ def orlib_all_specs():
 
 SPEC_SETS = {"default": default_specs, "orlib": orlib_specs,
              "orlib_scp": orlib_scp_full_specs, "orlib_uflp": orlib_uflp_specs,
-             "orlib_all": orlib_all_specs}
+             "orlib_all": orlib_all_specs,
+             "orlib_scp_probe": orlib_scp_probe_specs}
 
 
 def _sig(spec, decoder, method, n_seeds):

@@ -19,6 +19,13 @@ METHODS="$(curl -s -H 'Metadata-Flavor: Google' \
 [ -z "${METHODS}" ] && METHODS="poa,mpoa"
 METHODS="$(echo "${METHODS}" | tr '+' ',')"   # el lanzador lo manda con + (ver lanzar.sh)
 TAG="$(echo "${METHODS}" | tr ',' '_')"
+# decoders a correr. Default penalty, que es como se corrio todo hasta el 2026-09-07.
+# Hasta esa fecha este parametro NO existia, y por eso §5 del paper se midio con un
+# solo decoder pese a que §6 demuestra que el decoder decide el veredicto.
+DECODERS="$(curl -s -H 'Metadata-Flavor: Google'   http://metadata.google.internal/computeMetadata/v1/instance/attributes/decoders || true)"
+[ -z "${DECODERS}" ] && DECODERS="penalty"
+DECODERS="$(echo "${DECODERS}" | tr '+' ',')"
+TAG="${TAG}_$(echo "${DECODERS}" | tr ',' '_')"
 # conjunto de instancias: "default" (135 generadas) u "orlib" (benchmark real)
 SPECS="$(curl -s -H 'Metadata-Flavor: Google'   http://metadata.google.internal/computeMetadata/v1/instance/attributes/specs || true)"
 [ -z "${SPECS}" ] && SPECS="default"
@@ -29,7 +36,7 @@ LOG=/var/log/fcv-run.log
 exec > >(tee -a "$LOG") 2>&1
 
 echo "=== FCV run ${RUN_ID} (${METHODS}) — inicio $(date -Is) ==="
-echo "bucket=${BUCKET} jobs=${JOBS} metodos=${METHODS} specs=${SPECS} nproc=$(nproc)"
+echo "bucket=${BUCKET} jobs=${JOBS} metodos=${METHODS} decoders=${DECODERS} specs=${SPECS} nproc=$(nproc)"
 
 finish() {
   local rc=$1
@@ -85,15 +92,17 @@ fi
     gsutil -q -m rsync -r "$FCV_CACHE_V2" "gs://${BUCKET}/${RUN_ID}/_cache_${TAG}" || true
   done ) &
 
-echo "--- lanzando run_v2 (metodos: ${METHODS}) ---"
+echo "--- lanzando run_v2 (metodos: ${METHODS} | decoders: ${DECODERS}) ---"
 time python3 - <<PYEOF
 import sys, os
 sys.path.insert(0, os.environ.get("FCV_PKG", "/opt/fcv"))
 from fcv import run_v2
 metodos = tuple("${METHODS}".split(","))
 specs = run_v2.SPEC_SETS["${SPECS}"]()
+decoders = tuple("${DECODERS}".split(","))
 run_v2.run(jobs=${JOBS},
            specs=specs,
+           decoders=decoders,
            methods_list=metodos,
            out_prefix=os.path.join("/opt/fcv", "fcv_v2_${TAG}"))
 PYEOF
