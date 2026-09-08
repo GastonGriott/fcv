@@ -202,9 +202,19 @@ def bpso_run(problem, budget, seed, f_target, tol=1e-9,
 
 
 def _prob_estim(y, b=6.0):
-    """Probability-estimation operator de NMBDE (Wang 2012): mapea el mutante
-    diferencial continuo y=x_r1+F*(x_r2-x_r3) (en [-1,2] para bits) a P(bit=1).
-    g(y)=1/(1+exp(-2b(y-0.5)))."""
+    """🔴 NO reproduce el operador de NMBDE (Wang 2012). Ver fcv/NMBDE_OPERATOR.md.
+
+    Mapea el mutante diferencial y=x_r1+F*(x_r2-x_r3) a P(bit=1) con
+    g(y)=1/(1+exp(-2b(y-0.5))), que NO depende de F — y el rango de y si: es
+    [-F, 1+F]. El comentario original decia "en [-1,2]", que es el rango para F=1,
+    mientras el default es F=0.5.
+
+    Contrastado contra los tres valores que el propio paper publica para F=0.5
+    (0.2315 / 0.0266 / 0.9975), esta forma no reproduce ninguno. La fuente esta tras
+    paywall y la ecuacion completa no se pudo verificar, asi que NO se corrige a
+    ciegas: NMBDE_OPERATOR.md deja el test de aceptacion listo para cuando se consiga.
+
+    Mientras tanto, ningun resultado que involucre bde/mbde es valido."""
     z = -2.0 * b * (y - 0.5)
     if z > 60: return 0.0
     if z < -60: return 1.0
