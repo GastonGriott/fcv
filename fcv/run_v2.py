@@ -216,6 +216,27 @@ def build_tasks(specs, decoders, methods_list, n_seeds):
 
 def run(jobs=None, specs=None, decoders=DECODERS,
         methods_list=tuple(METHODS), n_seeds=N_SEEDS, out_prefix=None):
+    """🔴 DIMENSIONAR MIRANDO LAS CELDAS, NO LAS CORE-HORAS.
+
+    La unidad de paralelismo es la CELDA: cada worker toma una y corre sus `n_seeds`
+    semillas EN SECUENCIA. Por lo tanto
+
+        tiempo de pared ≈ ceil(n_celdas / jobs) × n_seeds × (tiempo por corrida)
+
+    y NO `core_horas / jobs`. Dos consecuencias que no son obvias:
+
+    1. **Recortar celdas no acorta la corrida** si ya hay menos celdas que workers:
+       sólo deja cores ociosos. Real (2026-09-08): una «sonda barata» de 6 celdas en
+       una maquina de 32 vCPU corrio al **18,8 % de CPU** —6 workers de 32— y su
+       tiempo de pared era de **79 h**, no las 14,8 que salian de dividir las 472
+       core-horas por 32. Las 15 instancias completas, con 30 celdas, habrian tardado
+       LO MISMO y con cinco veces mas datos.
+    2. El piso del tiempo lo fija **una sola celda**: `n_seeds × tiempo por corrida`.
+       Con 31 semillas de 2,54 h eso son 79 h aunque sobren cores.
+
+    Antes de pedir una maquina: contar `len(build_tasks(...))` y elegir `jobs` cerca
+    de ese numero, no al reves. Si las celdas son muchas menos que los vCPU, la
+    maquina grande no acelera nada — sale igual de cara y termina igual de tarde."""
     if specs is None:
         specs = default_specs()
     tasks = build_tasks(specs, decoders, methods_list, n_seeds)
